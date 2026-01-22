@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gersh - Personal Appearance</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #003366; /* Specific Gersh Navy */
+        }
+
+        /* --- Header Section --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px 40px;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left h1 {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
+            text-transform: lowercase;
+        }
+
+        .header-left h2 {
+            font-size: 14px;
+            font-weight: normal;
+            margin: 5px 0 0 0;
+            text-transform: lowercase;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .nav-trigger {
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: lowercase;
+            margin-bottom: 10px;
+        }
+
+        .roster-index {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Artist Grid Section --- */
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 20px 40px;
+        }
+
+        /* --- Profile Card & Hover Reaction --- */
+        .artist-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .artist-card {
+            position: relative;
+            box-sizing: border-box;
+            border: 4px solid transparent; /* Hidden border by default */
+            transition: border-color 0.2s ease;
+        }
+
+        /* The blue border reaction when cursor touches card */
+        .artist-link:hover .artist-card {
+            border-color: #003366; /* Blue border appears */
+        }
+
+        .artist-card img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+
+        .artist-name {
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: normal;
+            text-align: left;
+        }
+
+        /* --- Overlay Menu --- */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 2000;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-overlay.open {
+            right: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px 60px;
+            max-width: 800px;
+        }
+
+        .menu-item {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #003366;
+            text-transform: lowercase;
+        }
+
+        .menu-item:hover {
+            opacity: 0.5;
+        }
+
+        /* Responsive view */
+        @media (max-width: 1000px) {
+            .roster-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <h1>personal appearance</h1>
+            <h2>broadway concert artists</h2>
+        </div>
+        
+        <div class="logo">Gersh</div>
+
+        <div class="header-right">
+            <div class="nav-trigger" onclick="toggleMenu()">menu</div>
+            <a href="#" class="roster-index">☰ roster index</a>
+        </div>
+    </header>
+
+    <main class="roster-grid">
+        <a href="profile.html" class="artist-link">
+            <div class="artist-card">
+                <img src="https://via.placeholder.com/500" alt="Sebastian Arcelus">
+            </div>
+            <div class="artist-name">Sebastian Arcelus</div>
+        </a>
+
+        <a href="profile.html" class="artist-link">
+            <div class="artist-card">
+                <img src="https://via.placeholder.com/500" alt="Skylar Astin">
+            </div>
+            <div class="artist-name">Skylar Astin</div>
+        </a>
+
+        <a href="profile.html" class="artist-link">
+            <div class="artist-card">
+                <img src="https://via.placeholder.com/500" alt="Kate Baldwin">
+            </div>
+            <div class="artist-name">Kate Baldwin</div>
+        </a>
+
+        <a href="profile.html" class="artist-link">
+            <div class="artist-card">
+                <img src="https://via.placeholder.com/500" alt="Laura Benanti">
+            </div>
+            <div class="artist-name">Laura Benanti</div>
+        </a>
+    </main>
+
+    <div class="menu-overlay" id="menu">
+        <div class="close-btn" onclick="toggleMenu()">✕</div>
+        <div class="menu-grid">
+            <a href="#" class="menu-item">Artists</a>
+            <a href="#" class="menu-item">theatre</a>
+            <a href="#" class="menu-item">motion picture literary</a>
+            <a href="#" class="menu-item">production</a>
+            <a href="#" class="menu-item">television literary</a>
+            <a href="#" class="menu-item">personal appearances</a>
+            <a href="#" class="menu-item">alternative</a>
+            <a href="#" class="menu-item">global branding</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
